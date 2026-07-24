@@ -2,17 +2,17 @@
 
 export default function CategoryFilter({ categorias, activa, onSelect }) {
   return (
-    <div className="mx-auto flex max-w-6xl flex-wrap gap-3 px-8 pb-10">
+    <div className="mx-auto flex max-w-6xl flex-wrap gap-2 px-4 pb-8 sm:gap-3 sm:px-8 sm:pb-10">
       {categorias.map((cat) => {
         const isActive = cat === activa;
         return (
           <button
             key={cat}
             onClick={() => onSelect(cat)}
-            className={`rounded-full px-5 py-2 text-sm font-medium transition-colors ${
+            className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors sm:px-5 sm:py-2 ${
               isActive
-                ? "bg-[#bfe3f0] text-[#0f3a4a]"
-                : "bg-[#e7dccb] text-[#4a4034] hover:bg-[#ddd0ba]"
+                ? "bg-secondary/25 text-secondary"
+                : "bg-tertiary/60 text-neutral hover:bg-tertiary"
             }`}
           >
             {cat}
