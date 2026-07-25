@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -11,15 +12,18 @@ export default function Header() {
           Viajar con encanto
         </span>
 
+
         {/* Nav de escritorio */}
         <nav className="hidden items-center gap-8 text-[15px] text-neutral md:flex">
-          <a href="/" className="border-b-2 border-primary pb-1 font-medium text-primary">
+          <Link to="/" className="border-b-2 border-primary pb-1 font-medium text-primary">
             Home
-          </a>
-          <a href="#" className="hover:text-primary">Create Post</a>
-          <a href="#" className="hover:text-primary">Login</a>
-          <a href="#" className="hover:text-primary">Register</a>
+          </Link>
+          <Link to="/create-post" className="hover:text-primary">Create Post</Link>
+          <Link to="/login" className="hover:text-primary">Login</Link>
+          <Link to="/register" className="hover:text-primary">Register</Link>
         </nav>
+
+        
 
         {/* Botón hamburguesa (móvil) */}
         <button
@@ -34,10 +38,10 @@ export default function Header() {
       {/* Nav móvil desplegable */}
       {open && (
         <nav className="flex flex-col gap-4 border-t border-primary/20 px-4 py-4 text-[15px] text-neutral md:hidden">
-          <a href="/" className="font-medium text-primary">Home</a>
-          <a href="#" className="hover:text-primary">Create Post</a>
-          <a href="#" className="hover:text-primary">Login</a>
-          <a href="#" className="hover:text-primary">Register</a>
+          <Link to="/" className="font-medium text-primary">Home</Link>
+          <Link to="/create-post" className="hover:text-primary">Create Post</Link>
+          <Link to="/login" className="hover:text-primary">Login</Link>
+          <Link to="/register" className="hover:text-primary">Register</Link>
         </nav>
       )}
     </header>

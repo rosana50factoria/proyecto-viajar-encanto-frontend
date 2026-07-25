@@ -1,7 +1,7 @@
-import { useState} from "react";
-import Hero from "../components/Home/Hero";
-import CategoryFilter from "../components/Home/CategoryFilter";
-import PostGrid from "../components/Home/PostGrid";
+import { useState } from "react";
+import Hero from "../components/home/Hero";
+import CategoryFilter from "../components/home/CategoryFilter";
+import PostGrid from "../components/home/PostGrid";
 import { usePublicaciones } from "../hooks/usePublicaciones";
 
 const CATEGORIAS = ["Todos", "España", "París", "Londres"];
