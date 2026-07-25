@@ -1,4 +1,4 @@
-import PostCard from "../postCard/PostCard";
+import PostCard from "../Home/PostCard";
 
 export default function PostGrid({ posts }) {
   if (posts.length === 0) {
