@@ -2,8 +2,15 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
+import { NavLink } from "react-router-dom";
+
 export default function Header() {
   const [open, setOpen] = useState(false);
+
+  const navLinkClass = ({ isActive }) =>
+    isActive
+      ? "border-b-2 border-primary pb-1 font-medium text-primary"
+      : "hover:text-primary";
 
   return (
     <header className="border-b border-primary/20 bg-tertiary/30">
@@ -12,18 +19,24 @@ export default function Header() {
           Viajar con encanto
         </span>
 
-
         {/* Nav de escritorio */}
         <nav className="hidden items-center gap-8 text-[15px] text-neutral md:flex">
-          <Link to="/" className="border-b-2 border-primary pb-1 font-medium text-primary">
+          <NavLink to="/" end className={navLinkClass}>
             Home
-          </Link>
-          <Link to="/create-post" className="hover:text-primary">Create Post</Link>
-          <Link to="/login" className="hover:text-primary">Login</Link>
-          <Link to="/register" className="hover:text-primary">Register</Link>
-        </nav>
+          </NavLink>
 
-        
+          <NavLink to="/create-post" className={navLinkClass}>
+            Create Post
+          </NavLink>
+
+          <NavLink to="/login" className={navLinkClass}>
+            Login
+          </NavLink>
+
+          <NavLink to="/register" className={navLinkClass}>
+            Register
+          </NavLink>
+        </nav>
 
         {/* Botón hamburguesa (móvil) */}
         <button
@@ -38,10 +51,18 @@ export default function Header() {
       {/* Nav móvil desplegable */}
       {open && (
         <nav className="flex flex-col gap-4 border-t border-primary/20 px-4 py-4 text-[15px] text-neutral md:hidden">
-          <Link to="/" className="font-medium text-primary">Home</Link>
-          <Link to="/create-post" className="hover:text-primary">Create Post</Link>
-          <Link to="/login" className="hover:text-primary">Login</Link>
-          <Link to="/register" className="hover:text-primary">Register</Link>
+          <Link to="/" className="font-medium text-primary">
+            Home
+          </Link>
+          <Link to="/create-post" className="hover:text-primary">
+            Create Post
+          </Link>
+          <Link to="/login" className="hover:text-primary">
+            Login
+          </Link>
+          <Link to="/register" className="hover:text-primary">
+            Register
+          </Link>
         </nav>
       )}
     </header>
