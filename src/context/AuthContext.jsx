@@ -26,6 +26,7 @@ export function AuthProvider({ children }) {
     setToken(newToken);
     try {
       const payload = JSON.parse(atob(newToken.split(".")[1]));
+      console.log("payload" + payload);
       setUser(payload);
     } catch {
       setUser(null);
