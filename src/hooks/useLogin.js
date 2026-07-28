@@ -24,7 +24,7 @@ export function useLogin() {
     setLoading(true);
 
     try {
-      console.log("datos del form" + form.name);
+      
       const token = await loginUser(form);
       console.log("token" + token);
 
