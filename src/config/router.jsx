@@ -4,6 +4,9 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 
+import ProtectedRoute from "../components/auth/ProtectedRoute";
+import PublicacionDetalle from "../pages/PublicacionDetalle";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -13,7 +16,14 @@ const router = createBrowserRouter([
       // más adelante: { path: "create-post", element: <CreatePost /> },
       { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
-      
+      {
+        path: "/publicacion/:id",
+        element: (
+          <ProtectedRoute>
+            <PublicacionDetalle />
+          </ProtectedRoute>
+        ),
+      },
     ],
   },
 ]);

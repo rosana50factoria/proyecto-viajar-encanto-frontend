@@ -7,8 +7,34 @@ export async function getAllPublicaciones() {
   return res.json();
 }
 
+//metodo antiguo
+// export async function getPublicacionById(id) {
+//   const res = await fetch(`${API_URL}/${id}`);
+//   if (!res.ok) throw new Error("No se pudo cargar la publicación");
+//   return res.json();
+// }
+
+//guardo el token con el prefijo Bearer
+//si lo guardas "pelado", cámbialo a `Bearer ${token}`
+//en la authorizacion creo que se concatena el bearer (probar)
 export async function getPublicacionById(id) {
-  const res = await fetch(`${API_URL}/${id}`);
-  if (!res.ok) throw new Error("No se pudo cargar la publicación");
-  return res.json();
+  const token = localStorage.getItem("token");
+
+  const response = await fetch(`${API_URL}/${id}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      ...(token ? { Authorization: token } : {}),
+    },
+  });
+
+  if (response.status === 401 || response.status === 403) {
+    throw new Error("No autorizado");
+  }
+
+  if (!response.ok) {
+    throw new Error("Error al obtener la publicación");
+  }
+
+  return response.json();
 }
