@@ -7,16 +7,7 @@ export async function getAllPublicaciones() {
   return res.json();
 }
 
-//metodo antiguo
-// export async function getPublicacionById(id) {
-//   const res = await fetch(`${API_URL}/${id}`);
-//   if (!res.ok) throw new Error("No se pudo cargar la publicación");
-//   return res.json();
-// }
-
 //guardo el token con el prefijo Bearer
-//si lo guardas "pelado", cámbialo a `Bearer ${token}`
-//en la authorizacion creo que se concatena el bearer (probar)
 export async function getPublicacionById(id) {
   const token = localStorage.getItem("token");
 
@@ -39,15 +30,7 @@ export async function getPublicacionById(id) {
   return response.json();
 }
 
-export async function createPublicacion() {
-  //return null;
-}
-
-export async function updatePublicacion(){
-}
-
 export async function deletePublicacion(id) {
-  console.log("llamar al servicio de borrado");
   const token = localStorage.getItem("token");
   const response = await fetch(`${API_URL}/${id}`, {
     method: "DELETE",
@@ -64,4 +47,50 @@ export async function deletePublicacion(id) {
   if (!response.ok) {
     throw new Error("Error al borrar la publicación");
   }
+}
+
+export async function createPublicacion(data) {
+  const token = localStorage.getItem("token");
+  
+  const response = await fetch(API_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      ...(token ? { Authorization: token } : {}),
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (response.status === 401 || response.status === 403) {
+    throw new Error("No autorizado");
+  }
+
+  if (!response.ok) {
+    throw new Error("Error al crear la publicación");
+  }
+
+  return response.json();
+}
+
+export async function updatePublicacion(id, data) {
+  const token = localStorage.getItem("token");
+
+  const response = await fetch(`${API_URL}/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      ...(token ? { Authorization: token } : {}),
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (response.status === 401 || response.status === 403) {
+    throw new Error("No autorizado");
+  }
+
+  if (!response.ok) {
+    throw new Error("Error al actualizar la publicación");
+  }
+
+  return response.json();
 }

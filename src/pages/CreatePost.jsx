@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PostForm from "../components/Post/PostForm";
-import { createPublicacion } from "../services/publicacionService"; // ajustar si el nombre real difiere
+import { createPublicacion } from "../services/publicacionService"; 
 
 export default function CreatePost() {
   const navigate = useNavigate();

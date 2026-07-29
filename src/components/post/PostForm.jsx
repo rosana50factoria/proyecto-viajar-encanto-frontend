@@ -28,7 +28,7 @@ export default function PostForm({
 }) {
   const [form, setForm] = useState({
     title: initialData.title || "",
-    location: initialData.status || "",
+    status: initialData.status || "",
     content: initialData.content || "",
   });
   const [imageFile, setImageFile] = useState(null);
