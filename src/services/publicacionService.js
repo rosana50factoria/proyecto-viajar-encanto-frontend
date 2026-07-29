@@ -38,3 +38,13 @@ export async function getPublicacionById(id) {
 
   return response.json();
 }
+
+export async function createPublicacion() {
+  //return null;
+}
+
+export async function updatePublicacion(){
+}
+
+export async function deletePublicacion(id) {
+}
