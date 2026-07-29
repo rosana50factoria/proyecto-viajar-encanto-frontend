@@ -8,6 +8,7 @@ import ProtectedRoute from "../components/auth/ProtectedRoute";
 import PublicacionDetalle from "../pages/PublicacionDetalle";
 
 import CreatePost from "../pages/CreatePost";
+import EditPost from "../pages/EditPost";
 
 const router = createBrowserRouter([
   {
@@ -15,7 +16,11 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { index: true, element: <Home /> },
-      { path: "create-post", element: <CreatePost /> },
+      { path: "create-post", element: (
+          <ProtectedRoute>
+            <CreatePost />
+          </ProtectedRoute>
+        ) },
       { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
       {
@@ -23,6 +28,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <PublicacionDetalle />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/publicacion/:id/editar",
+        element: (
+          <ProtectedRoute>
+            <EditPost />
           </ProtectedRoute>
         ),
       },

@@ -47,4 +47,5 @@ export async function updatePublicacion(){
 }
 
 export async function deletePublicacion(id) {
+  console.log("llamar al servicio de borrado");
 }

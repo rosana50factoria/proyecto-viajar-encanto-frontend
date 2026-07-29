@@ -1,18 +1,38 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { usePublicacionDetalle } from "../hooks/usePublicacionDetalle";
 import { useAuth } from "../context/AuthContext";
 
+import Button from "../components/common/Button";
+import { deletePublicacion } from "../services/publicacionService";
+
 export default function PublicacionDetalle() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const { publicacion, loading, error } = usePublicacionDetalle(id);
 
   const { user } = useAuth();
-  
+
   if (loading) return <p className="p-8">Cargando...</p>;
   if (error) return <p className="p-8 text-red-600">{error}</p>;
   if (!publicacion) return null;
 
   const esAutor = user?.name === publicacion.authorName;
+
+  const handleDelete = async () => {
+      if (!confirm("¿Seguro que quieres eliminar esta publicación?")) return;
+      try {
+        await deletePublicacion(id);
+        navigate("/");
+      } catch (err) {
+        console.error("Error al eliminar:", err);
+      }
+    };
+
+    // const handleEdit = async () => {
+      
+    // };
+
+    const handleEdit = () => navigate(`/publicacion/${id}/editar`);
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-8">
@@ -25,8 +45,22 @@ export default function PublicacionDetalle() {
           <p className="font-serif font-semibold">{publicacion.authorName}</p>
           {esAutor && (
             <>
-              <button className="block text-sm text-primary mt-2">Editar</button>
-              <button className="block text-sm text-red-500 mt-1">Eliminar</button>
+              <Button
+                variant="link"
+                fullWidth={false}
+                className="block mt-2"
+                onClick={handleEdit}
+              >
+                Editar
+              </Button>
+              <Button
+                variant="link"
+                fullWidth={false}
+                className="block text-red-500 mt-1"
+                onClick={handleDelete}
+              >
+                Eliminar
+              </Button>
             </>
           )}
         </aside>
