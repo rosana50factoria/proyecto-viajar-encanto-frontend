@@ -48,4 +48,20 @@ export async function updatePublicacion(){
 
 export async function deletePublicacion(id) {
   console.log("llamar al servicio de borrado");
+  const token = localStorage.getItem("token");
+  const response = await fetch(`${API_URL}/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      ...(token ? { Authorization: token } : {}),
+    },
+  });
+
+  if (response.status === 401 || response.status === 403) {
+    throw new Error("No autorizado");
+  }
+
+  if (!response.ok) {
+    throw new Error("Error al borrar la publicación");
+  }
 }

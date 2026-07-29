@@ -20,7 +20,7 @@ const DESTINOS = [
 
 export default function PostForm({
   mode = "create", // "create" | "edit"
-  initialData = { title: "", location: "", content: "", image: null },
+  initialData = { title: "", status: "", content: "", image: null },
   onSubmit,
   onCancel,
   onDelete,
@@ -28,7 +28,7 @@ export default function PostForm({
 }) {
   const [form, setForm] = useState({
     title: initialData.title || "",
-    location: initialData.location || "",
+    location: initialData.status || "",
     content: initialData.content || "",
   });
   const [imageFile, setImageFile] = useState(null);
@@ -80,8 +80,8 @@ export default function PostForm({
 
         <Select
           label="Ubicación"
-          id="location"
-          value={form.location}
+          id="status"
+          value={form.status}
           onChange={handleChange}
           options={DESTINOS}
           placeholder="Selecciona un destino"
