@@ -8,11 +8,11 @@ export default function CreatePost() {
   const navigate = useNavigate();
   const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = async (data) => {
+  const handleCreate = async (formData) => {
     setSubmitting(true);
     try {
-      const nueva = await createPublicacion(data);
-      navigate(`/publicacion/${nueva.id}`);
+      const nuevapublicacion = await createPublicacion(formData);
+      navigate(`/publicacion/${nuevapublicacion.id}`);
     } catch (err) {
       console.error("Error al publicar:", err);
     } finally {
@@ -25,7 +25,7 @@ export default function CreatePost() {
       <h1 className="font-headline text-2xl text-neutral mb-8">Crear publicación</h1>
       <PostForm
         mode="create"
-        onSubmit={handleSubmit}
+        onSubmit={handleCreate}
         onCancel={() => navigate(-1)}
         submitting={submitting}
       />

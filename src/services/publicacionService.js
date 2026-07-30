@@ -49,48 +49,28 @@ export async function deletePublicacion(id) {
   }
 }
 
-export async function createPublicacion(data) {
+function authHeaders() {
   const token = localStorage.getItem("token");
-  
-  const response = await fetch(API_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      ...(token ? { Authorization: token } : {}),
-    },
-    body: JSON.stringify(data),
-  });
-
-  if (response.status === 401 || response.status === 403) {
-    throw new Error("No autorizado");
-  }
-
-  if (!response.ok) {
-    throw new Error("Error al crear la publicación");
-  }
-
-  return response.json();
+  return { Authorization: `${token}` };
+  // ojo: si guardaste el header tal cual vino del login, ajusta el prefijo
 }
 
-export async function updatePublicacion(id, data) {
-  const token = localStorage.getItem("token");
-
-  const response = await fetch(`${API_URL}/${id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      ...(token ? { Authorization: token } : {}),
-    },
-    body: JSON.stringify(data),
+export async function createPublicacion(formData) {
+  const res = await fetch(API_URL, {
+    method: "POST",
+    headers: authHeaders(), // NO pongas Content-Type, el navegador lo setea con el boundary correcto
+    body: formData,
   });
+  if (!res.ok) throw new Error("Error al crear la publicación");
+  return res.json();
+}
 
-  if (response.status === 401 || response.status === 403) {
-    throw new Error("No autorizado");
-  }
-
-  if (!response.ok) {
-    throw new Error("Error al actualizar la publicación");
-  }
-
-  return response.json();
+export async function updatePublicacion(id, formData) {
+  const res = await fetch(`${API_URL}/${id}`, {
+    method: "PUT",
+    headers: authHeaders(),
+    body: formData,
+  });
+  if (!res.ok) throw new Error("Error al actualizar la publicación");
+  return res.json();
 }

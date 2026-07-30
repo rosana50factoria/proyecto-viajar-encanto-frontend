@@ -5,6 +5,7 @@ import { useAuth } from "../context/AuthContext";
 import Button from "../components/common/Button";
 import { deletePublicacion } from "../services/publicacionService";
 
+import { resolveImageUrl } from "../utils/image";
 export default function PublicacionDetalle() {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -28,10 +29,7 @@ export default function PublicacionDetalle() {
       }
     };
 
-    // const handleEdit = async () => {
-      
-    // };
-
+  
     const handleEdit = () => navigate(`/publicacion/${id}/editar`);
 
   return (
@@ -67,7 +65,7 @@ export default function PublicacionDetalle() {
 
         <article>
           <img
-            src={publicacion.image}
+            src={resolveImageUrl(publicacion.image)}
             alt={publicacion.title}
             className="w-full rounded-lg object-cover max-h-[420px]"
           />

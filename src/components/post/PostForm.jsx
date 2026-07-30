@@ -34,6 +34,7 @@ export default function PostForm({
   const [imageFile, setImageFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(initialData.image || null);
 
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
@@ -46,7 +47,18 @@ export default function PostForm({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ ...form, imageFile });
+  
+    const formData = new FormData();
+    formData.append("title", form.title);
+    formData.append("content", form.content);
+    formData.append("status", form.status);
+    // Solo se adjunta si el usuario eligió un archivo nuevo.
+    // Si es edición sin cambio de imagen, el backend debe conservar la actual.
+    if (imageFile) {
+      formData.append("image", imageFile);
+    }
+
+    onSubmit(formData);
   };
 
   const isEdit = mode === "edit";

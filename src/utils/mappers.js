@@ -1,3 +1,5 @@
+import { resolveImageUrl } from "../utils/image";
+
 const CATEGORIA_LABELS = {
   ESPAÑA: "España",
   PARIS: "París",
@@ -11,7 +13,7 @@ export function mapPublicacion(p) {
     titulo: p.title,
     extracto: p.content,
     autor: p.user?.name ?? "Anónimo",
-    imagen: p.image,
+    imagen: resolveImageUrl(p.image),
   };
 }
 
@@ -20,7 +22,7 @@ export function mapPublicacionDetalle(dto) {
     id: dto.id,
     title: dto.title,
     content: dto.content,
-    image: dto.image,
+    image: resolveImageUrl(dto.image),
     country: dto.status, // enum PaisFilter
     publishDate: dto.publishDate,
     authorName: dto.user?.name,

@@ -8,6 +8,8 @@ import {
   deletePublicacion,
 } from "../services/publicacionService"; // ajustar si el nombre real difiere
 
+import { mapPublicacionDetalle } from "../utils/mappers";
+
 export default function EditPost() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -15,10 +17,13 @@ export default function EditPost() {
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    getPublicacionById(id).then(setPost).catch(console.error);
+    getPublicacionById(id)
+    //.then(setPost)
+    .then((data) => setPost(mapPublicacionDetalle(data)))
+    .catch(console.error);
   }, [id]);
 
-  const handleSubmit = async (data) => {
+  const handleEdit = async (formData) => {
     setSubmitting(true);
     try {
       await updatePublicacion(id, data);
@@ -48,7 +53,7 @@ export default function EditPost() {
       <PostForm
         mode="edit"
         initialData={post}
-        onSubmit={handleSubmit}
+        onSubmit={handleEdit}
         onCancel={() => navigate(-1)}
         onDelete={handleDelete}
         submitting={submitting}

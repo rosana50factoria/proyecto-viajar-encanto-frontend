@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { User } from "lucide-react";
 
+import { resolveImageUrl } from "../../utils/image.js";
+
 export default function PostCard({ post }) {
   return (
     <Link
@@ -10,7 +12,7 @@ export default function PostCard({ post }) {
       <article className="flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm">
         <div className="relative h-48 w-full overflow-hidden sm:h-56">
           <img
-            src={post.imagen}
+            src={resolveImageUrl(post.imagen)}
             alt={post.titulo}
             className="h-full w-full object-cover"
           />
