@@ -1,7 +1,9 @@
-const BASE_URL = "http://localhost:8080";
+//const BASE_URL = "http://localhost:8080";
+
+import {BACKEND_URL} from "../config/constants";
 
 export async function loginUser({ email, password }) {
-  const res = await fetch(`${BASE_URL}/login`, {
+  const res = await fetch(`${BACKEND_URL}/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),

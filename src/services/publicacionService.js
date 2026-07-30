@@ -1,7 +1,10 @@
-const API_URL = "http://localhost:8080/api/v1/publicacion";
+//const API_URL = "http://localhost:8080/api/v1/publicacion";
+
+import {API_URL} from "../config/constants";
 
 //se recuperan los posts del endpoinnt getpublicaciones del backend
 export async function getAllPublicaciones() {
+  console.log(API_URL);
   const res = await fetch(API_URL);
   if (!res.ok) throw new Error("No se pudieron cargar las publicaciones");
   return res.json();

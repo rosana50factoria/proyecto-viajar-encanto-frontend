@@ -20,13 +20,16 @@ const Register = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:8080/api/v1/user/register", {
+      const response = await fetch("http://localhost:8080/api/v1/users/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
 
       if (!response.ok) {
+        const text = await response.text();
+        console.log("Status:", response.status);
+        console.log("Respuesta:", text);
         const errData = await response.json().catch(() => null);
         throw new Error(errData?.message || "No se pudo completar el registro");
       }
