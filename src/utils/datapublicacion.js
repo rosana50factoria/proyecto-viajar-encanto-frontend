@@ -3,8 +3,8 @@
 //   {
 //     id: 1,
 //     categoria: "España",
-//     titulo: "El susurro de Cudillero al amanecer",
-//     extracto:
+//     title: "El susurro de Cudillero al amanecer",
+//     content:
 //       "Hay lugares que parecen atrapados en un tiempo más amable. Caminar por las callejuelas vacías mientras el mar…",
 //     autor: "Elena Marín",
 //     imagen:
@@ -14,8 +14,8 @@
 //   {
 //     id: 2,
 //     categoria: "París",
-//     titulo: "La melancolía dulce de la Bretaña",
-//     extracto:
+//     title: "La melancolía dulce de la Bretaña",
+//     content:
 //       "Caminar bajo la lluvia fina por Saint-Suliac es descubrir que el gris puede ser el color más acogedor del mundo si se acompaña",
 //     autor: "Lucie Bernard",
 //     imagen:
@@ -25,8 +25,8 @@
 //   {
 //     id: 3,
 //     categoria: "Londres",
-//     titulo: "Atardeceres sobre los tejados",
-//     extracto:
+//     title: "Atardeceres sobre los tejados",
+//     content:
 //       "Lejos del bullicio del centro, existe una ciudad que se disfruta desde las alturas, con una vista privilegiada y la calma de la…",
 //     autor: "Marco Polo",
 //     imagen:

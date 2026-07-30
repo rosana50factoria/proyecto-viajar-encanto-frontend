@@ -51,6 +51,7 @@ export async function deletePublicacion(id) {
 
 function authHeaders() {
   const token = localStorage.getItem("token");
+  console.log(token);
   return { Authorization: `${token}` };
   // ojo: si guardaste el header tal cual vino del login, ajusta el prefijo
 }

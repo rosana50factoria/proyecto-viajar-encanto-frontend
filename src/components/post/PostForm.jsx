@@ -20,7 +20,7 @@ const DESTINOS = [
 
 export default function PostForm({
   mode = "create", // "create" | "edit"
-  initialData = { title: "", status: "", content: "", image: null },
+  initialData = { title: "", pais: "", content: "", image: null },
   onSubmit,
   onCancel,
   onDelete,
@@ -28,7 +28,7 @@ export default function PostForm({
 }) {
   const [form, setForm] = useState({
     title: initialData.title || "",
-    status: initialData.status || "",
+    pais: initialData.pais || "",
     content: initialData.content || "",
   });
   const [imageFile, setImageFile] = useState(null);
@@ -51,7 +51,7 @@ export default function PostForm({
     const formData = new FormData();
     formData.append("title", form.title);
     formData.append("content", form.content);
-    formData.append("status", form.status);
+    formData.append("pais", form.pais);
     // Solo se adjunta si el usuario eligió un archivo nuevo.
     // Si es edición sin cambio de imagen, el backend debe conservar la actual.
     if (imageFile) {
@@ -92,8 +92,8 @@ export default function PostForm({
 
         <Select
           label="Ubicación"
-          id="status"
-          value={form.status}
+          id="pais"
+          value={form.pais}
           onChange={handleChange}
           options={DESTINOS}
           placeholder="Selecciona un destino"

@@ -9,9 +9,9 @@ const CATEGORIA_LABELS = {
 export function mapPublicacion(p) {
   return {
     id: p.id,
-    categoria: CATEGORIA_LABELS[p.status] ?? p.status,
-    titulo: p.title,
-    extracto: p.content,
+    categoria: CATEGORIA_LABELS[p.pais] ?? p.pais,
+    title: p.title,
+    content: p.content,
     autor: p.user?.name ?? "Anónimo",
     imagen: resolveImageUrl(p.image),
   };
@@ -23,7 +23,7 @@ export function mapPublicacionDetalle(dto) {
     title: dto.title,
     content: dto.content,
     image: resolveImageUrl(dto.image),
-    country: dto.status, // enum PaisFilter
+    pais: dto.pais, // enum PaisFilter
     publishDate: dto.publishDate,
     authorName: dto.user?.name,
   };

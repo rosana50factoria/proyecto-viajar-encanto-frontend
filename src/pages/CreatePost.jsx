@@ -9,6 +9,7 @@ export default function CreatePost() {
   const [submitting, setSubmitting] = useState(false);
 
   const handleCreate = async (formData) => {
+    console.log(formData);
     setSubmitting(true);
     try {
       const nuevapublicacion = await createPublicacion(formData);

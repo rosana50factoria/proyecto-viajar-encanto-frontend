@@ -70,7 +70,7 @@ export default function PublicacionDetalle() {
             className="w-full rounded-lg object-cover max-h-[420px]"
           />
           <span className="inline-block mt-4 text-xs bg-secondary/20 text-secondary px-2 py-1 rounded">
-            {publicacion.country}
+            {publicacion.pais}
           </span>
           <h1 className="font-serif text-3xl font-bold mt-2">
             {publicacion.title}

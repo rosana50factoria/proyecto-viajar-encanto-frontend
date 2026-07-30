@@ -26,7 +26,7 @@ export default function EditPost() {
   const handleEdit = async (formData) => {
     setSubmitting(true);
     try {
-      await updatePublicacion(id, data);
+      await updatePublicacion(id, formData);
       navigate(`/publicacion/${id}`);
     } catch (err) {
       console.error("Error al guardar cambios:", err);

@@ -72,26 +72,47 @@ export default function Header() {
       {/* Nav móvil desplegable */}
       {open && (
         <nav className="flex flex-col gap-4 border-t border-primary/20 px-4 py-4 text-[15px] text-neutral md:hidden">
-          <Link to="/" className="font-medium text-primary" onClick={() => setOpen(false)}>
+          <Link
+            to="/"
+            className="font-medium text-primary"
+            onClick={() => setOpen(false)}
+          >
             Home
           </Link>
 
           {isAuthenticated && (
-            <Link to="/create-post" className="hover:text-primary" onClick={() => setOpen(false)}>
+            <Link
+              to="/create-post"
+              className="hover:text-primary"
+              onClick={() => setOpen(false)}
+            >
               Create Post
             </Link>
           )}
 
           {isAuthenticated ? (
-            <button onClick={handleLogout} className="text-left hover:text-primary">
-              Logout
-            </button>
+            <>
+              <span className="text-neutral/70">
+                Hola, {user?.sub || user?.email || "usuario"}
+              </span>
+              <button onClick={handleLogout} className="text-left hover:text-primary">
+                Logout
+              </button>
+            </>
           ) : (
             <>
-              <Link to="/login" className="hover:text-primary" onClick={() => setOpen(false)}>
+              <Link
+                to="/login"
+                className="hover:text-primary"
+                onClick={() => setOpen(false)}
+              >
                 Login
               </Link>
-              <Link to="/register" className="hover:text-primary" onClick={() => setOpen(false)}>
+              <Link
+                to="/register"
+                className="hover:text-primary"
+                onClick={() => setOpen(false)}
+              >
                 Register
               </Link>
             </>

@@ -13,7 +13,7 @@ export default function PostCard({ post }) {
         <div className="relative h-48 w-full overflow-hidden sm:h-56">
           <img
             src={resolveImageUrl(post.imagen)}
-            alt={post.titulo}
+            alt={post.title}
             className="h-full w-full object-cover"
           />
           <span className="absolute left-3 top-3 rounded-full bg-white/95 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-primary sm:left-4 sm:top-4">
@@ -23,10 +23,10 @@ export default function PostCard({ post }) {
 
         <div className="flex flex-1 flex-col p-4 sm:p-6">
           <h3 className="font-serif text-lg font-bold leading-snug text-neutral sm:text-xl">
-            {post.titulo}
+            {post.title}
           </h3>
           <p className="mt-2 flex-1 text-sm leading-relaxed text-neutral/70 sm:mt-3 sm:text-[15px]">
-            {post.extracto}
+            {post.content}
           </p>
 
           <div className="mt-4 flex items-center gap-3 border-t border-tertiary pt-4 sm:mt-5">
